@@ -7,4 +7,4 @@ depend: [ProtocolLib, AntiRelog]
 commands:
   givesphere:
     permission: holyMascots.admin
-    usage: /givesphere [username] [sphereName] [sphereType]
+    usage: /givesphere [username] [sphereName] [sphereType] [amount]

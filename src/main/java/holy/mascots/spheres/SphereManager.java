@@ -9,9 +9,12 @@ import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
@@ -33,6 +36,9 @@ public class SphereManager {
         parse(sphereList);
         plugin.getServer().getPluginManager().registerEvents(new SphereManagerBukkitListener(), plugin);
         effectHandler = new SphereEffectHandler(this);
+
+        craftCash.put(SphereType.EPIC, new HashMap<>());
+        craftCash.put(SphereType.LEGEND, new HashMap<>());
     }
 
     public boolean isSphere(ItemStack stack) {
@@ -78,10 +84,6 @@ public class SphereManager {
         return null;
     }
 
-//    public void runSpeedScheduler() {
-//        Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, ()->{
-//        }, 0, 20*20);
-//    }
     private void parse(List<?> sphereList) {
         for (Object o : sphereList) {
             if (!(o instanceof LinkedHashMap map)) continue;
@@ -115,13 +117,25 @@ public class SphereManager {
     }
 
     public class SphereManagerBukkitListener implements Listener {
+
+        @EventHandler
+        private void inventoryClickEvent(InventoryClickEvent event) {
+            if (event.getInventory().getType() != InventoryType.ANVIL) return;
+            if (event.getSlot() != 2) return;
+            ItemStack stack = event.getCurrentItem();
+            ItemSphere sphere = getItemSphere(stack);
+            if (sphere == null) return;
+            if (craftCash.containsKey(sphere.getType().getType()))
+                craftCash.get(sphere.getType().getType()).remove((Player) event.getWhoClicked());
+        }
+
         @EventHandler
         private void omAnvil(PrepareAnvilEvent event) {
             final AnvilInventory inventory = event.getInventory();
             ItemStack stack1 = inventory.getItem(0);
             ItemStack stack2 = inventory.getItem(1);
             if (stack1 == null || stack2 == null) return;
-
+            if (stack1.getAmount() != 1 || stack2.getAmount() != 1) return;
             final Player player = (Player) event.getView().getPlayer();
 
             if (stack2.getType()==Material.TOTEM_OF_UNDYING) {
@@ -129,11 +143,9 @@ public class SphereManager {
                 if (!sphere1.getType().getMascot().isStatus()) return;
                 ItemStack stack3 = sphere1.getSphere().getItemStack(sphere1.getType().getType(),true);
                 event.setResult(stack3);
-                if (Config.ANVIL_COST.MASCOT >= 41)
-                    setInstantBuild(player, player.getLevel()>=Config.ANVIL_COST.MASCOT);
-                plugin.getServer().getScheduler().runTask(plugin, () -> {
-                    inventory.setRepairCost(60);
-                });
+                if (Config.ANVIL_COST.MASCOT >= 41 && player.getLevel()>=Config.ANVIL_COST.MASCOT)
+                    setInstantBuild(player, true);
+                plugin.getServer().getScheduler().runTask(plugin, () -> inventory.setRepairCost(60));
                 return;
             }
 
@@ -142,18 +154,35 @@ public class SphereManager {
             if (sphere1.getType().getType() != sphere2.getType().getType()) return;
             Sphere sphere3 = getRandomSphere();
             int cost = 0;
+            ItemStack result = null;
             switch (sphere1.getType().getType()) {
                 case NORMAL -> {
-                    event.setResult(sphere3.getItemStack(SphereType.EPIC));
+                    Map<Player, ItemStack> epicCash = craftCash.get(SphereType.EPIC);
+                    if (epicCash.containsKey(player)) {
+                        result = epicCash.get(player);
+                    } else {
+                        result = sphere3.getItemStack(SphereType.EPIC);
+                        epicCash.put(player, result);
+                    }
                     cost = Config.ANVIL_COST.NORMAL;
                 }
                 case EPIC -> {
-                    event.setResult(sphere3.getItemStack(SphereType.LEGEND));
+                    Map<Player, ItemStack> legendCash = craftCash.get(SphereType.LEGEND);
+                    if (legendCash.containsKey(player)) {
+                        result = legendCash.get(player);
+                    } else {
+                        result = sphere3.getItemStack(SphereType.LEGEND);
+                        legendCash.put(player, result);
+                    }
                     cost = Config.ANVIL_COST.EPIC;
                 }
             }
-            if (cost >= 41)
-                setInstantBuild(player, player.getLevel()>=cost);
+            if (result == null) return;
+            event.setResult(result);
+            if (cost >= 41 && player.getLevel() >= cost)
+                setInstantBuild(player, true);
+            else if (player.getLevel() < cost)
+                setInstantBuild(player, false);
             int finalCost = cost;
             plugin.getServer().getScheduler().runTask(plugin, () -> inventory.setRepairCost(finalCost));
         }
