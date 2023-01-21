@@ -3,7 +3,9 @@ package holy.mascots.spheres;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -67,7 +69,6 @@ public class SphereEffectHandler implements Listener {
                 }
                 if (!sphere.sphere.comparison(stack)) {
                     sphere.delete();
-                    System.out.println("DISABLE");
                 }
             }
 
@@ -87,6 +88,13 @@ public class SphereEffectHandler implements Listener {
             monitorTask.cancel();
     }
 
+    @EventHandler
+    private void onPluginDisable(PluginDisableEvent event) {
+        if (event.getPlugin() != sphereManager.getPlugin()) return;
+        for (ActiveSphere s : activeSpheres) {
+            s.delete();
+        }
+    }
 
     @Getter
     public static class ActiveSphere {

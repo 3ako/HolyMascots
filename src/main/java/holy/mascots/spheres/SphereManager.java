@@ -7,11 +7,9 @@ import holy.mascots.Config;
 import holy.mascots.spheres.utils.NBTEditor;
 import lombok.Getter;
 import lombok.NonNull;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
@@ -20,16 +18,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class SphereManager {
     @Getter
     private final List<Sphere> spheres =  new ArrayList<>();
     @Getter
     private final SphereEffectHandler effectHandler;
+    private final Map<SphereType, Map<Player,ItemStack>> craftCash = new HashMap<>();
     @Getter
     private final JavaPlugin plugin;
     public SphereManager(@NonNull JavaPlugin plugin, @NonNull List<?> sphereList) {

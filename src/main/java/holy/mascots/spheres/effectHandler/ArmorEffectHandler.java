@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class ArmorEffectHandler implements EffectHandler, Listener {
         if (!(event.getEntity() instanceof Player player)) return;
         final Integer value = activePlayers.get(player);
         if (value != null) {
-            event.setDamage(event.getDamage()-value);
+            event.setDamage(EntityDamageEvent.DamageModifier.BASE,event.getDamage(EntityDamageEvent.DamageModifier.BASE)-value);
         }
     }
 }
