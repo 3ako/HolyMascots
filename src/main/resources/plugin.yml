@@ -1,0 +1,10 @@
+name: Mascots
+version: '${version}'
+main: holy.mascots.Mascots
+api-version: 1.16
+authors: [ Zako ]
+depend: [ProtocolLib, AntiRelog]
+commands:
+  givesphere:
+    permission: holyMascots.admin
+    usage: /givesphere [username] [sphereName] [sphereType]

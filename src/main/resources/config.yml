@@ -1,0 +1,160 @@
+cost:
+  normal: 30
+  epic: 50
+  mascot: 50 # Крафт талисмана
+
+spheres:
+  - name: Stinger
+    types:
+      - type: NORMAL
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU5NTI5M2FjYmNkNGY1NWZhZjU5NDdiZmM1MTM1MDM4YjI3NWE3YWI4MTA4NzM0MWI5ZWM2ZTQ1M2U4MzkifX19
+        display-name: "§x§6§8§6§8§6§8§lО§x§6§e§6§e§6§e§lб§x§7§3§7§3§7§3§lы§x§7§9§7§9§7§9§lч§x§7§f§7§f§7§f§lн§x§8§5§8§5§8§5§lа§x§8§a§8§a§8§a§lя §x§9§0§9§0§9§0§lс§x§9§6§9§6§9§6§lф§x§9§c§9§c§9§c§lе§x§a§1§a§1§a§1§lр§x§a§7§a§7§a§7§lа"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§f+10% к скорости"
+          - "§f+1 к броне"
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§aТалисман из сферы Stringer (Обычный)"
+          lore:
+            - "§fТалисман даёт:"
+            - ""
+            - "§f+10% к скорости"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: SPEED
+            value: 10
+
+      - type: EPIC
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYzYmNhZjZkMjY3OWQ4ZDdkOWJmNmE0NzRhNDhhNzdhOGU5MTc0N2ExMDg0YzA5MjU2ZWJjODZjYjc0ODExIn19fQ==
+        display-name: "§x§9§c§0§0§a§0§lЭ§x§a§3§0§0§a§5§lп§x§a§a§0§0§a§a§lи§x§b§1§0§0§a§f§lч§x§b§9§0§0§b§4§lе§x§c§0§0§0§b§9§lс§x§c§7§0§0§b§e§lк§x§c§e§0§0§c§2§lа§x§d§5§0§0§c§7§lя §x§d§c§0§0§c§c§lс§x§e§4§0§0§d§1§lф§x§e§b§0§0§d§6§lе§x§f§2§0§0§d§b§lр§x§f§9§0§0§e§0§lа"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§f+10% к скорости"
+          - "§f+1 к броне"
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§7Талисман из сферы Stringer (Эпический)"
+          lore:
+            - "§fТалисман даёт:"
+            - "§7+10% к скорости"
+            - "§7+1 к броне"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: SPEED
+            value: 10
+          - type: ARMOR
+            value: 1
+
+      - type: LEGEND
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGM5MzY1NjQyYzZlZGRjZmVkZjViNWUxNGUyYmM3MTI1N2Q5ZTRhMzM2M2QxMjNjNmYzM2M1NWNhZmJmNmQifX19
+        display-name: "§x§0§0§a§e§b§9§lЛ§x§0§9§b§2§b§d§lе§x§1§1§b§5§c§2§lг§x§1§a§b§9§c§6§lе§x§2§2§b§c§c§a§lн§x§2§b§c§0§c§e§lд§x§3§3§c§3§d§3§lа§x§3§c§c§7§d§7§lр§x§4§4§c§a§d§b§lн§x§4§d§c§e§d§f§lа§x§5§5§d§1§e§4§lя §x§5§e§d§5§e§8§lс§x§6§6§d§8§e§c§lф§x§6§f§d§c§f§0§lе§x§7§7§d§f§f§5§lр§x§8§0§e§3§f§9§lа"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§f+20% к скорости"
+          - "§f+2 к урону "
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§cТалисман из сферы Stringer (Легендарный)"
+          lore:
+            - "§cТалисман даёт:"
+            - "§c+20% к скорости"
+            - "§c+2 к урону"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: SPEED
+            value: 20
+          - type: DAMAGE
+            value: 2
+
+  - name: mst
+    types:
+      - type: NORMAL
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWU5NTI5M2FjYmNkNGY1NWZhZjU5NDdiZmM1MTM1MDM4YjI3NWE3YWI4MTA4NzM0MWI5ZWM2ZTQ1M2U4MzkifX19
+        display-name: "MST Normal sphere"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§f+50% к скорости"
+          - "§f+1 к броне"
+          - "§f+3 к спешке"
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§aТалисман из сферы MST (Обычный)"
+          lore:
+            - "§fТалисман даёт:"
+            - ""
+            - "§f+50% к скорости"
+            - "§f+1 к броне"
+            - "§f+3 к спешке"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: SPEED
+            value: 50
+          - type: RUSH
+            value: 3
+          - type: ARMOR
+            value: 1
+
+      - type: EPIC
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTYzYmNhZjZkMjY3OWQ4ZDdkOWJmNmE0NzRhNDhhNzdhOGU5MTc0N2ExMDg0YzA5MjU2ZWJjODZjYjc0ODExIn19fQ==
+        display-name: "MST Epic sphere"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§7+70% к скорости"
+          - "§7+10 к броне"
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§7Талисман из сферы MST (Эпический)"
+          lore:
+            - "§fТалисман даёт:"
+            - ""
+            - "§7+70% к скорости"
+            - "§7+10 к броне"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: SPEED
+            value: 70
+          - type: ARMOR
+            value: 10
+
+      - type: LEGEND
+        texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGM5MzY1NjQyYzZlZGRjZmVkZjViNWUxNGUyYmM3MTI1N2Q5ZTRhMzM2M2QxMjNjNmYzM2M1NWNhZmJmNmQifX19
+        display-name: "MST Legend sphere"
+        lore:
+          - "§fСфера даёт:"
+          - ""
+          - "§c+20 к урону"
+          - ""
+          - "§8Возьмите в левую руку"
+        mascot:
+          enabled: true
+          display-name: "§cТалисман из сферы MST (Легендарный)"
+          lore:
+            - "§cТалисман даёт:"
+            - ""
+            - "§c+20 к урону"
+            - ""
+            - "§8Возьмите в левую руку"
+        effects:
+          - type: DAMAGE
+            value: 20
